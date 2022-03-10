@@ -1,0 +1,11 @@
+target/
+uploads/
+dependency-reduced-pom.xml
+.vscode/
+.settings/
+.mvn/
+.project
+.classpath
+.springBeans
+*.log
+*.sql

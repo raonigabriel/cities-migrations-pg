@@ -108,7 +108,7 @@
 			</testResource>
 		</testResources>
 		<plugins>
-			<!-- Skips the default execution of compilation -->
+			<!-- Skips the default execution of Java compiler -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -119,7 +119,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!-- Skips the default execution of unit tests -->
+			<!-- Skips the default execution of Java unit tests -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
@@ -154,6 +154,21 @@
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
 				<executions>
+					<!-- Lints the docker image (requires hadolint to be installed) -->
+					<execution>
+						<phase>test</phase>
+						<id>lint-docker-file</id>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<configuration>
+							<workingDirectory>${project.basedir}</workingDirectory>
+							<executable>hadolint</executable>
+							<arguments>
+								<argument>Dockerfile</argument>
+							</arguments>
+						</configuration>
+					</execution>					
 					<!-- Builds the docker image (requires docker to be installed) -->
 					<execution>
 						<phase>package</phase>
@@ -172,8 +187,7 @@
 							</arguments>
 						</configuration>
 					</execution>
-					<!-- Test our docker image (using container-structure-test, inside a 
-						docker image!) -->
+					<!-- Test our docker image (requires container-structure-test to be installed) -->
 					<execution>
 						<phase>pre-integration-test</phase>
 						<id>verify-docker-image</id>
@@ -182,21 +196,13 @@
 						</goals>
 						<configuration>
 							<workingDirectory>${project.basedir}</workingDirectory>
-							<executable>docker</executable>
+							<executable>container-structure-test</executable>
 							<arguments>
-								<argument>run</argument>
-								<argument>--rm</argument>
-								<argument>-t</argument>
-								<argument>-v</argument>
-								<argument>/var/run/docker.sock:/var/run/docker.sock</argument>
-								<argument>-v</argument>
-								<argument>${project.basedir}/src/test/resources/structure-tests.yaml:/tmp/structure-tests.yaml</argument>
-								<argument>gcr.io/gcp-runtimes/container-structure-test</argument>
 								<argument>test</argument>
 								<argument>--image</argument>
 								<argument>${docker.image.name}</argument>
 								<argument>--config</argument>
-								<argument>/tmp/structure-tests.yaml</argument>
+								<argument>${project.basedir}/src/test/resources/structure-tests.yaml</argument>
 							</arguments>
 						</configuration>
 					</execution>

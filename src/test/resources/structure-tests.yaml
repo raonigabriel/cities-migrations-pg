@@ -19,13 +19,13 @@ fileExistenceTests:
 - name: 'initial structure-script exists'
   path: '/docker-entrypoint-initdb.d/V1_0_0__INITIAL_STRUCTURE.sql'
   shouldExist: true
-  permissions: '-rw-rw-r--'
+  permissions: '-rw-r--r--'
   uid: 70
   gid: 70
 - name: 'schema-version exists'
   path: '/docker-entrypoint-initdb.d/schema-version'
   shouldExist: true
-  permissions: '-rw-rw-r--'
+  permissions: '-rw-r--r--'
   uid: 70
   gid: 70
   

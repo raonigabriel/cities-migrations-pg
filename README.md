@@ -18,6 +18,9 @@ Released under the Apache 2.0 license
 
 # Disclaimer
 This code comes with no warranty. Use it at your own risk.
+
 I don't like Apple. Fuck off, fan-boys.
+
 I don't like left-winged snowflakes. Fuck off, code-covenant.
+
 I will call my branches the old way. Long live master, fuck-off renaming.

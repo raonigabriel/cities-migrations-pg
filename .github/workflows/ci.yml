@@ -25,7 +25,7 @@ jobs:
         run: |
               chmod 664 src/main/resources/db/migration/
               chmod +x src/main/resources/db/migration
-              ls src/main/resources/db/migration
+              ls -la src/main/resources/db/migration
 
       - name: Cache dependencies
         uses: actions/cache@v2

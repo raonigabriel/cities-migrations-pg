@@ -20,7 +20,12 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v2
-        
+
+      - name: Fix permissions
+        run: |
+              chmod 664 src/main/resources/db/migration/
+              chmod +x src/main/resources/db/migration
+
       - name: Cache dependencies
         uses: actions/cache@v2
         with:

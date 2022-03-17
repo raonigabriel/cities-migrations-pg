@@ -14,6 +14,12 @@ commandTests:
     command: "postgres"
     args: ["--version"]
     expectedOutput: [".*14.*"]
+  - name: "initdb has correct amount of files"
+    setup: [["apk", "add", "tree"]]
+    command: "tree"
+    args: ["/docker-entrypoint-initdb.d"]
+    expectedOutput: ["0 directories, 3 files"]
+
 
 fileExistenceTests:
 - name: 'initial structure-script exists'

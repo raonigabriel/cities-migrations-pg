@@ -23,7 +23,7 @@ jobs:
 
       - name: Fix permissions
         run: |
-              chmod 664 src/main/resources/db/migration/
+              chmod -R 664 src/main/resources/db/migration/
               chmod +x src/main/resources/db/migration
               ls -la src/main/resources/db/migration
 

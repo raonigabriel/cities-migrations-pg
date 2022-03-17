@@ -25,7 +25,7 @@ fileExistenceTests:
 - name: 'initial structure-script exists'
   path: '/docker-entrypoint-initdb.d/V1_0_0__INITIAL_STRUCTURE.sql'
   shouldExist: true
-  permissions: '-rw-r--r--'
+  permissions: '-rw-rw--r--'
   uid: 70
   gid: 70
 - name: 'schema-version exists'
